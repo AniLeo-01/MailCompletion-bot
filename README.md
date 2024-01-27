@@ -31,7 +31,7 @@ Training:
 - Trained for 10 epochs with a learning rate of 1e-3 which took around 40 mins.
 
 ## Performance
-The code achieves 33.20 perplexity score on the AESLC dataset.
+The model achieves 33.20 perplexity score on the AESLC dataset.
 
 ## Conclusion
 The model can be used for autocompletion in the case of writing emails thus serving its purpose. But for better accuracy, it is recommended to not generate more than 5 next-token predictions to reduce out-of-context output generation.
