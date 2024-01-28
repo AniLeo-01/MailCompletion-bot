@@ -36,6 +36,48 @@ The model achieves 33.20 perplexity score on the AESLC dataset.
 ## Conclusion
 The model can be used for autocompletion in the case of writing emails thus serving its purpose. But for better accuracy, it is recommended to not generate more than 5 next-token predictions to reduce out-of-context output generation.
 
+## Replicate the experiment
+
+To replicate the finetuning process, run the trainer.py with your desired argument values:
+```python3 trainer.py -r distilgpt2-fine_tuned-aeslc --save_model saved_model -o saved_checkpoints -w wandb```
+The following argument parameters can be configured to run the finetuning process to your conditions:
+```
+-r/ --run_name: experiment run name
+--save_model: save current model path
+-o/ --output_dir: output directory
+-m/ --model_checkpoint: model checkpoint
+-b/ --block_size: block size
+-d/ --dataloader_drop_last: dataloader drop last
+-e/ --evaluation_strategy: evaluation strategy
+-s/ --save_strategy: save strategy
+-n/ --num_train_epochs: num train epochs
+--logging_steps: logging steps
+-p/ --per_device_train_batch_size: per device train batch size
+-q/ --per_device_eval_batch_size: per device eval batch size
+-l/ --learning_rate: learning rate
+-c/ --lr_scheduler: lr scheduler
+-w/ --warmup_steps: warmup steps
+-g/ --gradient_accumulation_steps: gradient accumulation steps
+-f/ --use_fp16: use fp16
+--weight_decay: weight decay
+--monitoring_platform: monitoring platform'
+```
+After finetuning the model, to inference the model, run the inference.py script:
+```python3 inference.py --model_checkpoint distilgpt2-fine_tuned-aeslc/checkpoint-1530 --input_text 'Hello World'```
+The following argument parameters can be configured to run the inference process to your conditions:
+```
+--model_checkpoint: model checkpoint path
+--return_tensors: return tensor format
+--return_dict_in_generate: return the dictionary during generation
+--output_scores: output scores after generation
+--num_beams: number of beams in beam decode
+--do_sample: do sampling
+--repetition_penalty: repetition penalty
+--length_penalty: length of the penalty
+--input_text: text input for generation
+--num_token_generate: number of tokens to generate
+```
+
 ## Citations
 ```
 @inproceedings{sanh2019distilbert,
